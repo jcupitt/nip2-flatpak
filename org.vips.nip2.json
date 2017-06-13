@@ -1,0 +1,207 @@
+{
+  "app-id": "org.vips.nip2",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "3.24",
+  "sdk": "org.gnome.Sdk",
+  "command": "nip2",
+  "rename-desktop-file": "nip2.desktop",
+  "rename-appdata-file": "nip2.appdata.xml",
+  "finish-args": [
+    "--share=ipc", "--socket=x11",
+    "--socket=wayland",
+    "--filesystem=host",
+    "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
+    "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+  ],
+  "build-options" : {
+    "cflags": "-O3",
+    "cxxflags": "-O3",
+    "env": {
+      "V": "0"
+    }
+  },
+  "cleanup": [
+    "/include", "/lib/pkgconfig",
+    "/share/pkgconfig", "/share/aclocal",
+    "/man", "/share/man", "/share/gtk-doc",
+    "/share/vala",
+    "*.la", "*.a"
+  ],
+
+  "modules": [
+
+    {
+      "name": "fftw",
+      "no-autogen": true,
+      "cleanup": [ "/bin" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://www.fftw.org/fftw-3.3.4.tar.gz",
+          "sha256": "8f0cde90929bc05587c3368d2f15cd0530a60b8a9912a8e2979a72dbe5af0982"
+         }
+      ]
+    },
+
+    {
+      "name": "ilmbase",
+      "no-autogen": true,
+      "cleanup": [ "/bin" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://download.savannah.nongnu.org/releases/openexr/ilmbase-2.2.0.tar.gz",
+          "sha256": "ecf815b60695555c1fbc73679e84c7c9902f4e8faa6e8000d2f905b8b86cedc7"
+         }
+      ]
+    },
+
+    {
+      "name": "openexr",
+      "no-autogen": true,
+      "cleanup": [ "/bin" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://download.savannah.nongnu.org/releases/openexr/openexr-2.2.0.tar.gz",
+          "sha256": "36a012f6c43213f840ce29a8b182700f6cf6b214bea0d5735594136b44914231"
+         }
+      ]
+    },
+
+    {
+      "name": "openjpeg",
+      "cmake": true,
+      "subdir": "scripts",
+      "config-opts": [ "-DBUILD_SHARED_LIBS=ON", "-DCMAKE_INSTALL_LIBDIR=lib" ],
+      "cleanup": [ "/bin" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/uclouvain/openjpeg/archive/v2.1.1.tar.gz",
+          "sha256": "82c27f47fc7219e2ed5537ac69545bf15ed8c6ba8e6e1e529f89f7356506dbaa"
+         }
+      ]
+    },
+
+    {
+      "name": "openslide",
+      "no-autogen": true,
+      "cleanup": [ "/bin" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://ftp.gnome.org/pub/gnome/sources/libgsf/1.14/libgsf-1.14.41.tar.xz",
+          "sha256": "150b98586a1021d5c49b3d4d065d0aa3e3674ae31db131af5372499d2d3f08d3"
+         }
+      ]
+    },
+
+    {
+      "name": "magick",
+      "no-autogen": true,
+      "cleanup": [ "/bin" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://www.imagemagick.org/download/releases/ImageMagick-6.9.8-10.tar.xz",
+          "sha256": "8fc268f6e1bc514b41620e0f3f6c5dd33bfc5169db679e9a5c0455c6edd11810"
+         }
+      ]
+    },
+
+    {
+      "name": "popplerdata",
+      "no-autogen": true,
+      "make-install-args": ["prefix=/app"],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://poppler.freedesktop.org/poppler-data-0.4.7.tar.gz",
+          "sha256": "e752b0d88a7aba54574152143e7bf76436a7ef51977c55d6bd9a48dccde3a7de"
+        }
+      ]
+    },
+
+    {
+      "name": "poppler",
+      "config-opts": [ "--disable-libopenjpeg" ],
+      "cleanup": [ "/bin" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://poppler.freedesktop.org/poppler-0.36.0.tar.xz",
+          "sha256": "93cc067b23c4ef7421380d3e8bd7c940b2027668446750787d7c1cb42720248e"
+         }
+      ]
+    },
+
+    {
+      "name": "libgsf",
+      "no-autogen": true,
+      "cleanup": [ "/bin" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://ftp.gnome.org/pub/gnome/sources/libgsf/1.14/libgsf-1.14.41.tar.xz",
+          "sha256": "150b98586a1021d5c49b3d4d065d0aa3e3674ae31db131af5372499d2d3f08d3"
+         }
+      ]
+    },
+
+    {
+      "name": "libmatio",
+      "no-autogen": true,
+      "cleanup": [ "/bin" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://downloads.sourceforge.net/sourceforge/matio/matio-1.5.6.tar.gz",
+          "sha256": "39a6e6a40d9fd8d707f4494483b8df30ffd617ba0a19c663e3685ad55ff55878"
+         }
+      ]
+    },
+
+    {
+      "name": "cfitsio",
+      "no-autogen": true,
+      "cleanup": [ "/bin" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/cfitsio3390.tar.gz",
+          "sha256": "62d3d8f38890275cc7a78f5e9a4b85d7053e75ae43e988f1e2390e539ba7f409"
+         }
+      ]
+    },
+
+    {
+      "name": "libvips",
+      "no-autogen": true,
+      "config-opts": [ 
+        "--without-python", "--disable-pyvips8", "--disable-introspection"
+      ],
+      "cleanup": [ "/bin" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/jcupitt/libvips/releases/download/v8.5.6/vips-8.5.6.tar.gz",
+          "sha256": "19a77ab200eb0ddfcd8babab130fe43c7730880d1f1fdfbdd8def519af32c4b8"
+        }
+      ]
+    },
+
+    {
+      "name": "nip2",
+      "no-autogen": true,
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/jcupitt/nip2/releases/download/v8.5.1/nip2-8.5.1.tar.gz",
+          "sha256": "8a3d277ae59f880b4075d8a0d4fe081e99605cbfb22f3647dafce9e24dbeb9f3"
+        }
+      ]
+    }
+
+  ]
+}
