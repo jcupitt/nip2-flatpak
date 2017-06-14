@@ -19,21 +19,12 @@ flatpak install gnome org.gnome.Platform//3.24 org.gnome.Sdk//3.24
 # Install and poke about in some of the standard apps
 
 ```
-flatpak remote-add --from gnome-apps https://sdk.gnome.org/gnome-apps.flatpakrepo
 flatpak install gnome-apps org.gnome.gedit
 flatpak run org.gnome.gedit
 flatpak run --devel --command=bash org.gnome.gedit
 ```
 
-# Init a build area
-
-```
-mkdir nip2-flatpak
-cd nip2-flatpak
-flatpak build-init nip2 org.vips.nip2 org.gnome.Sdk org.gnome.Platform 3.24
-```
-
-# Build a package 
+# Build nip2
 
 ```
 flatpak-builder --repo=nip2-repo nip2 org.vips.nip2.json
