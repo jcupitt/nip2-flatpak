@@ -6,6 +6,7 @@
   "command": "nip2",
   "rename-desktop-file": "nip2.desktop",
   "rename-appdata-file": "nip2.appdata.xml",
+  "rename-icon": "nip2",
   "finish-args": [
     "--share=ipc", "--socket=x11",
     "--socket=wayland",
@@ -25,7 +26,10 @@
     "/share/pkgconfig", "/share/aclocal",
     "/man", "/share/man", "/share/gtk-doc",
     "/share/vala",
-    "*.la", "*.a"
+    "*.la", "*.a",
+    "/share/doc/ImageMagick-6",
+    "/share/doc/OpenEXR-2.2.0",
+    "/share/doc/nip2/pdf"
   ],
 
   "modules": [
@@ -33,7 +37,12 @@
     {
       "name": "fftw",
       "no-autogen": true,
-      "cleanup": [ "/bin" ],
+      "config-opts": [
+        "--disable-static", 
+	"--enable-shared", 
+        "--disable-threads" 
+      ],
+      "cleanup": ["/bin"],
       "sources": [
         {
           "type": "archive",
@@ -46,7 +55,7 @@
     {
       "name": "ilmbase",
       "no-autogen": true,
-      "cleanup": [ "/bin" ],
+      "cleanup": ["/bin"],
       "sources": [
         {
           "type": "archive",
@@ -59,7 +68,7 @@
     {
       "name": "openexr",
       "no-autogen": true,
-      "cleanup": [ "/bin" ],
+      "cleanup": ["/bin"],
       "sources": [
         {
           "type": "archive",
@@ -72,9 +81,8 @@
     {
       "name": "openjpeg",
       "cmake": true,
-      "subdir": "scripts",
-      "config-opts": [ "-DBUILD_SHARED_LIBS=ON", "-DCMAKE_INSTALL_LIBDIR=lib" ],
-      "cleanup": [ "/bin" ],
+      "config-opts": ["-DBUILD_SHARED_LIBS=ON", "-DCMAKE_INSTALL_LIBDIR=lib"],
+      "cleanup": ["/bin"],
       "sources": [
         {
           "type": "archive",
@@ -87,7 +95,7 @@
     {
       "name": "openslide",
       "no-autogen": true,
-      "cleanup": [ "/bin" ],
+      "cleanup": ["/bin"],
       "sources": [
         {
           "type": "archive",
@@ -100,7 +108,7 @@
     {
       "name": "magick",
       "no-autogen": true,
-      "cleanup": [ "/bin" ],
+      "cleanup": ["/bin"],
       "sources": [
         {
           "type": "archive",
@@ -111,22 +119,8 @@
     },
 
     {
-      "name": "popplerdata",
-      "no-autogen": true,
-      "make-install-args": ["prefix=/app"],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "http://poppler.freedesktop.org/poppler-data-0.4.7.tar.gz",
-          "sha256": "e752b0d88a7aba54574152143e7bf76436a7ef51977c55d6bd9a48dccde3a7de"
-        }
-      ]
-    },
-
-    {
       "name": "poppler",
-      "config-opts": [ "--disable-libopenjpeg" ],
-      "cleanup": [ "/bin" ],
+      "cleanup": ["/bin"],
       "sources": [
         {
           "type": "archive",
@@ -139,7 +133,7 @@
     {
       "name": "libgsf",
       "no-autogen": true,
-      "cleanup": [ "/bin" ],
+      "cleanup": ["/bin"],
       "sources": [
         {
           "type": "archive",
@@ -152,7 +146,7 @@
     {
       "name": "libmatio",
       "no-autogen": true,
-      "cleanup": [ "/bin" ],
+      "cleanup": ["/bin"],
       "sources": [
         {
           "type": "archive",
@@ -165,7 +159,7 @@
     {
       "name": "cfitsio",
       "no-autogen": true,
-      "cleanup": [ "/bin" ],
+      "cleanup": ["/bin"],
       "sources": [
         {
           "type": "archive",
@@ -178,10 +172,12 @@
     {
       "name": "libvips",
       "no-autogen": true,
-      "config-opts": [ 
-        "--without-python", "--disable-pyvips8", "--disable-introspection"
+      "config-opts": [
+        "--without-python", 
+	"--disable-pyvips8", 
+	"--disable-introspection"
       ],
-      "cleanup": [ "/bin" ],
+      "cleanup": ["/bin"],
       "sources": [
         {
           "type": "archive",
@@ -197,8 +193,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/jcupitt/nip2/releases/download/v8.5.1/nip2-8.5.1.tar.gz",
-          "sha256": "8a3d277ae59f880b4075d8a0d4fe081e99605cbfb22f3647dafce9e24dbeb9f3"
+          "url": "https://github.com/jcupitt/nip2/releases/download/v8.5.2-beta.1/nip2-8.5.2.tar.gz",
+          "sha256": "bbaa74a02e0e0c583a32cd6c4c6420f779cff9860e988062a53b0c8149c57822"
         }
       ]
     }
